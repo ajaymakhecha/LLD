@@ -2,7 +2,7 @@ package org.LLD.entities;
 
 import java.util.List;
 
-public class Transaction {
+public class Transaction{
 
     private User payer;
 

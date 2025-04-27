@@ -1,13 +1,11 @@
 package org.LLD.services;
 
-import org.LLD.entities.Show;
+import org.LLD.entities.ShowCommand;
 import org.LLD.entities.Transaction;
 import org.LLD.entities.User;
-import org.LLD.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class SplitWiseManager {
 
@@ -19,15 +17,16 @@ public class SplitWiseManager {
         this.balanceHandler = balanceHandler;
     }
 
-    public void transact(Transaction transaction)
+    public List<String> transact(Transaction transaction)
     {
         transactionHandler.handleTransaction(transaction);
+        return new ArrayList<>();
     }
 
-    public List<String> show(Show next) {
-        if(next.getUserId()==null)
+    public List<String> show(User user) {
+        if(user==null)
             return balanceHandler.show();
         else
-            return balanceHandler.show(next.getUserId());
+            return balanceHandler.show(user);
     }
 }

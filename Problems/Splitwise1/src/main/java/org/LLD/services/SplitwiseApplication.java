@@ -1,6 +1,7 @@
 package org.LLD.services;
 
-import org.LLD.entities.Show;
+import org.LLD.entities.Command;
+import org.LLD.entities.ShowCommand;
 import org.LLD.entities.Transaction;
 import org.LLD.strategies.IOStrategy;
 
@@ -19,16 +20,11 @@ public class SplitwiseApplication {
     {
         while(true)
         {
-            Object next = ioStrategy.getUserInput();
+            Command next = ioStrategy.getUserInput();
 
-            if(next instanceof Show) {
-                List<String> output = splitWiseManager.show((Show) next);
-                ioStrategy.print(output);
-            }
+            List<String> output = next.execute(splitWiseManager);
+            ioStrategy.print(output);
 
-            if(next instanceof Transaction) {
-                splitWiseManager.transact((Transaction) next);
-            }
         }
     }
 }
